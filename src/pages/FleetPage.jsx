@@ -27,7 +27,7 @@ return (
         <div>
           <ExplicacionFleet/>
 
-          <Uploady destination={{url: "http://localhost:8000/upload_file_fleet"}}>
+          <Uploady destination={{url: "https://evening-lowlands-47269.herokuapp.com/upload_file_fleet"}}>
               <UploadButton className = "btn btn-gradient rounded transform-0"
                             text      = "Subir fichero"/>
               <SaveFile/>
