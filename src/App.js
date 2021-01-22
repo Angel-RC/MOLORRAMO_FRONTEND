@@ -16,30 +16,29 @@ import SignInForm from "./components/SignInForm"
 function App()  {
 
 
-  const [Fleet, SetFleet]         = useState(undefined)
+  const [Data, SetData] = useState(undefined)
+  const [Fleet, SetFleet] = useState(undefined)
   const [Locations, SetLocations] = useState(undefined)
-  const [Route, SetRoute]         = useState(undefined)
+  const [RouteOptions, SetRouteOptions] = useState(undefined)
+  console.log(RouteOptions)
 
-    return (
+  return (
     <div className = "App">
       <AuthContext.Provider value = {true}>
 
       <BrowserRouter>
         <Switch>
-          <PrivateRoute path = "/fleet"     component = {FleetPage}     file = {Fleet}     SetFile = {SetFleet} />
-          <PrivateRoute path = "/locations" component = {LocationsPage} file = {Locations} SetFile = {SetLocations}  />
-          <PrivateRoute path = "/route"     component = {RoutePage}     file = {Route}     SetFile = {SetRoute}/>
+          <PrivateRoute path = "/fleet"     component = {FleetPage}     file = {Fleet}                SetFile = {SetFleet}/>
+          <PrivateRoute path = "/locations" component = {LocationsPage} file = {Locations}            SetFile = {SetLocations}/>
+          <PrivateRoute path = "/route"     component = {RoutePage}     RouteOptions = {RouteOptions} SetRouteOptions = {SetRouteOptions}/>
           <Route        path = '/signin'    component = {SignInPage} />
           <Redirect to="/fleet" />
         </Switch>
       </BrowserRouter>
       </AuthContext.Provider>
-
-      
- </div>
-
- 
- );
+  
+    </div>
+  );
 }
 
 export default App;

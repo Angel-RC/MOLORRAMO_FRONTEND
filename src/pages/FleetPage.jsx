@@ -19,27 +19,24 @@ function FleetPage(props){
   return null
   };
 
-return (
-      <div>
+  return (
+    <div>
       <NavBar/>
       <Container title = "Vehiculos disponibles"
-      content =  {
-        <div>
-          <ExplicacionFleet/>
-
-          <Uploady destination={{url: "https://evening-lowlands-47269.herokuapp.com/upload_file_fleet"}}>
-              <UploadButton className = "btn btn-gradient rounded transform-0"
-                            text      = "Subir fichero"/>
+        content =  {
+          <div>
+            <ExplicacionFleet/>
+            <Uploady destination={{url: "https://evening-lowlands-47269.herokuapp.com/upload_file_fleet"}}>
+              <UploadButton className = "btn btn-gradient rounded transform-0" text = "Subir fichero"/>
               <SaveFile/>
-	        </Uploady >
-        <hr/>
-      </div>
- }
-/>
- 
-</div>
+	          </Uploady >
+            <hr/>
+          </div>
+        }
+      />
+    </div>
 
-);
+  );
 }
 
 

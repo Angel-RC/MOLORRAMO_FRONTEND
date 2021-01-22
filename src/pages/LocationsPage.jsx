@@ -27,7 +27,7 @@ return (
         <div>
           <ExplicacionLocations/>
 
-          <Uploady destination={{url: "http://evening-lowlands-47269.herokuapp.com/upload_file_locations"}}>
+          <Uploady destination={{url: "https://evening-lowlands-47269.herokuapp.com/upload_file_locations"}}>
               <UploadButton className = "btn btn-gradient rounded transform-0"
                             text      = "Subir fichero"/>
               <SaveFile/>
