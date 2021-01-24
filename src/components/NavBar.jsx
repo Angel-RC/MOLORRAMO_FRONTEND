@@ -29,9 +29,9 @@ class NavBar extends Component {
                 <div className="collapse navbar-collapse pt-3 pt-lg-0" id="navigation">
                     
                     <ul className="navbar-nav">
-                        <li className={this.getNavLinkClass("/fleet")}><NavLink to="/fleet" className = "nav-link">Vehiculos</NavLink></li>
-                        <li className={this.getNavLinkClass("/locations")}><NavLink to="/locations" className = "nav-link">Destinos</NavLink></li>
-                        <li className={this.getNavLinkClass("/route")}><NavLink to="/route" className = "nav-link">Ruta</NavLink></li>
+                        <li className={this.getNavLinkClass("/encimeras")}><NavLink to="/encimeras" className = "nav-link">Tienda</NavLink></li>
+                        <li className={this.getNavLinkClass("/galeria")}><NavLink to="/galeria" className = "nav-link">Galeria</NavLink></li>
+                        <li className={this.getNavLinkClass("/micuenta")}><NavLink to="/micuenta" className = "nav-link">Mi cuenta</NavLink></li>
                     </ul>
                     
                     <ul className="navbar-nav ml-auto">

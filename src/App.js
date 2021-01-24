@@ -2,36 +2,37 @@
 import './App.css';
 import NavBar from "./components/NavBar"
 import Container from "./components/Container"
-import ExplicacionFleet from "./components/ExplicacionFleet"
 import React, {useState, Component } from "react";
 import { BrowserRouter, Switch, Route, NavLink, withRouter, Redirect } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import {AuthContext}  from "./context/Auth";
-import FleetPage from "./pages/FleetPage"
-import LocationsPage from "./pages/LocationsPage"
-import RoutePage from "./pages/RoutePage"
+import ProductPage from "./pages/ProductPage"
 import SignInPage from "./pages/SignInPage"
 import SignInForm from "./components/SignInForm"
 
 function App()  {
 
 
-  const [Data, SetData] = useState(undefined)
-  const [Fleet, SetFleet] = useState(undefined)
-  const [Locations, SetLocations] = useState(undefined)
-  const [RouteOptions, SetRouteOptions] = useState(undefined)
-  console.log(RouteOptions)
+  const [EncimerasCarrito, SetEncimerasCarrito] = useState([])
+  const [InventarioCarrito, SetInventarioCarrito] = useState([])
+  const [FregaderosCarrito, SetFregaderosCarrito] = useState([])
+  const [SuplementosCarrito, SetSuplementosCarrito] = useState([])
+
+  const [UserLogin, SetUserLogin] = useState(true)
+  
 
   return (
     <div className = "App">
-      <AuthContext.Provider value = {true}>
+      <AuthContext.Provider value = {UserLogin}>
 
       <BrowserRouter>
+      <NavBar />
         <Switch>
-          <PrivateRoute path = "/fleet"     component = {FleetPage}     file = {Fleet}                SetFile = {SetFleet}/>
-          <PrivateRoute path = "/locations" component = {LocationsPage} file = {Locations}            SetFile = {SetLocations}/>
-          <PrivateRoute path = "/route"     component = {RoutePage}     RouteOptions = {RouteOptions} SetRouteOptions = {SetRouteOptions}/>
-          <Route        path = '/signin'    component = {SignInPage} />
+          <PrivateRoute path = "/encimeras"   component = {ProductPage} page = "encimeras"   Data = {EncimerasCarrito}   SetData = {SetEncimerasCarrito}/>
+          <PrivateRoute path = "/inventario"  component = {ProductPage} page = "inventario"  Data = {InventarioCarrito}  SetData = {SetInventarioCarrito}/>
+          <PrivateRoute path = "/fregaderos"  component = {ProductPage} page = "fregaderos"  Data = {FregaderosCarrito}  SetData = {SetFregaderosCarrito}/>
+          <PrivateRoute path = "/suplementos" component = {ProductPage} page = "suplementos" Data = {SuplementosCarrito} SetData = {SetSuplementosCarrito}/>
+          <Route        path = '/signin'      component = {SignInPage}  UserLogin = {UserLogin} SetUserLogin = {SetUserLogin}/>
           <Redirect to="/fleet" />
         </Switch>
       </BrowserRouter>

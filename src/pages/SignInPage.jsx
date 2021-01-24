@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 
 
-function SignInPage ()  {
+function SignInPage (props)  {
     
 
      return (
@@ -19,7 +19,7 @@ function SignInPage ()  {
 
 				<div className="auth-wrapper mx-auto">
 					<h2 className="auth-heading text-center mb-4">Entra a tu cuenta</h2>
-					<SignInForm />
+					<SignInForm  UserLogin = {props.UserLogin} SetUserLogin = {props.SetUserLogin} />
 				</div>
      		 </div>
      	</div>
