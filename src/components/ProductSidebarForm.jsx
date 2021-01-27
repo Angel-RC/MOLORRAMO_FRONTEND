@@ -1,6 +1,7 @@
-import React,{useState, Component} from 'react'; 
+import React,{useState, useEffect, Component} from 'react'; 
 import { useForm, getValues } from "react-hook-form";
 import MultiSelect from "react-multi-select-component";
+import * as API from "../functions/functions"
 import {
   ProSidebar,
   Menu,
@@ -16,6 +17,14 @@ function ProductSidebarForm (props) {
 
   const { register, handleSubmit, errors, getValues } = useForm()
 
+  const [Options, setOptions] = useState({
+    material : [], 
+    color : [], 
+    medida : [],
+    acabado : [],
+    grosor : [], 
+    concepto: []
+  })
   const [Filtros, setFiltros] = useState({
     material : [], 
     color : [], 
@@ -23,31 +32,51 @@ function ProductSidebarForm (props) {
     acabado : [],
     grosor : [], 
     concepto: [],
-    cantidad : 0
+    cantidad : []
   });
   
-  const [Data, setData] = useState([])
 
 
- 
+  const handleChange = (event, nombre)=>{
+
+    
+    {
+      nombre === "cantidad" ? 
+      setFiltros({...Filtros, [nombre]: event.target.value})
+      : 
+      setFiltros({...Filtros, [nombre]: event})
+    };
+
+
+    API.filterData(props.DataInicial, Filtros, props.setDataMostrar, Options, setOptions)
+
+
+    
+
+  }
+
   const onSubmit = data => {
-   
-    props.setData([...props.Data, "Data"])
+    props.SetDataCarrito([...props.DataCarrito, "Data"])
   };
-     
-  console.log(Data)
-  const options = [
-    { label: "Grapes 🍇", value: "grapes" },
-    { label: "Mango 🥭", value: "mango" },
-    { label: "Strawberry 🍓", value: "strawberry", disabled: true },
-    { label: "Watermelon 🍉", value: "watermelon" },
-    { label: "Pear 🍐", value: "pear" },
-    { label: "Apple 🍎", value: "apple" },
-    { label: "Tangerine 🍊", value: "tangerine" },
-    { label: "Pineapple 🍍", value: "pineapple" },
-    { label: "Peach 🍑", value: "peach" },
-  ];
-  console.log(Filtros)
+
+
+  useEffect(() => {
+    API.CreateDataInicial(props.page, props.setDataInicial, setOptions)
+    console.log(props.page)
+    console.log(props.DataInicial)
+
+    setFiltros({
+      material : [], 
+      color : [], 
+      medida : [],
+      acabado : [],
+      grosor : [], 
+      concepto: [],
+      cantidad : []
+    });
+  }, [props.page]) 
+  
+
   return ( 
 
 
@@ -57,9 +86,9 @@ function ProductSidebarForm (props) {
         <div>
         Material
         <MultiSelect 
-          options={options}
+          options={Options.material}
           value={Filtros.material}
-          onChange={(event) => setFiltros({...Filtros, material: event})}
+          onChange={(event) => {handleChange(event, "material")}}
           labelledBy={"Selecciona el material"}
         />      
         </div>
@@ -70,9 +99,9 @@ function ProductSidebarForm (props) {
         <div>
         Color
         <MultiSelect 
-          options={options}
+          options={Options.color}
           value={Filtros.color}
-          onChange={(event) => setFiltros({...Filtros, color: event})}
+          onChange={(event) => {handleChange(event, "color")}}
           labelledBy={"Selecciona el color"}
         />
         </div>
@@ -83,9 +112,9 @@ function ProductSidebarForm (props) {
         <div>
         Acabado
         <MultiSelect 
-          options={options}
+          options={Options.acabado}
           value={Filtros.acabado}
-          onChange={(event) => setFiltros({...Filtros, acabado: event})}
+          onChange={(event) => {handleChange(event, "acabado")}}
           labelledBy={"Selecciona el acabado"}
         />
         </div>
@@ -96,9 +125,9 @@ function ProductSidebarForm (props) {
         <div>
         Grosor
         <MultiSelect 
-          options={options}
+          options={Options.grosor}
           value={Filtros.grosor}
-          onChange={(event) => setFiltros({...Filtros, grosor: event})}
+          onChange={(event) => {handleChange(event, "grosor")}}
           labelledBy={"Selecciona el grosor"}
         />
         </div>
@@ -110,9 +139,9 @@ function ProductSidebarForm (props) {
         <div>
         Medida
         <MultiSelect 
-          options={options}
+          options={Options.medida}
           value={Filtros.medida}
-          onChange={(event) => setFiltros({...Filtros, medida: event})}
+          onChange={(event) => {handleChange(event, "medida")}}
           labelledBy={"Selecciona la medida"}
         />
         </div>
@@ -124,9 +153,9 @@ function ProductSidebarForm (props) {
         <div>
         Concepto
         <MultiSelect 
-          options={options}
+          options={Options.concepto}
           value={Filtros.concepto}
-          onChange={(event) => setFiltros({...Filtros, concepto: event})}
+          onChange={(event) => {handleChange(event, "concepto")}}
           labelledBy={"Selecciona el concepto"}
         />
         </div>
@@ -135,7 +164,7 @@ function ProductSidebarForm (props) {
       { ["suplementos"].includes(props.page) ? 
         <div>
         Cantidad
-        <input name = "cantidad" id = "cantidad" type="number" step="0.01" className = "form-control" onSubmit = {(event) => event.preventDefault()} onChange={(event) => setFiltros({...Filtros, cantidad: event.target.value})}/>
+        <input name = "cantidad" id = "cantidad" type="number" step="0.01" className = "form-control" onSubmit = {(event) => event.preventDefault()} onChange={(event) => {handleChange(event, "cantidad")}}/>
         </div>
         : null
       }

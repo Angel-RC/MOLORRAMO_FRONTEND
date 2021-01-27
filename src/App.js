@@ -28,12 +28,12 @@ function App()  {
       <BrowserRouter>
       <NavBar />
         <Switch>
-          <PrivateRoute path = "/encimeras"   component = {ProductPage} page = "encimeras"   Data = {EncimerasCarrito}   SetData = {SetEncimerasCarrito}/>
-          <PrivateRoute path = "/inventario"  component = {ProductPage} page = "inventario"  Data = {InventarioCarrito}  SetData = {SetInventarioCarrito}/>
-          <PrivateRoute path = "/fregaderos"  component = {ProductPage} page = "fregaderos"  Data = {FregaderosCarrito}  SetData = {SetFregaderosCarrito}/>
-          <PrivateRoute path = "/suplementos" component = {ProductPage} page = "suplementos" Data = {SuplementosCarrito} SetData = {SetSuplementosCarrito}/>
+          <PrivateRoute path = "/encimeras"   component = {ProductPage} page = "encimeras"   DataCarrito = {EncimerasCarrito}   SetDataCarrito = {SetEncimerasCarrito}/>
+          <PrivateRoute path = "/inventario"  component = {ProductPage} page = "inventario"  DataCarrito = {InventarioCarrito}  SetDataCarrito = {SetInventarioCarrito}/>
+          <PrivateRoute path = "/fregaderos"  component = {ProductPage} page = "fregaderos"  DataCarrito = {FregaderosCarrito}  SetDataCarrito = {SetFregaderosCarrito}/>
+          <PrivateRoute path = "/suplementos" component = {ProductPage} page = "suplementos" DataCarrito = {SuplementosCarrito} SetDataCarrito = {SetSuplementosCarrito}/>
           <Route        path = '/signin'      component = {SignInPage}  UserLogin = {UserLogin} SetUserLogin = {SetUserLogin}/>
-          <Redirect to="/fleet" />
+          <Redirect to="/encimeras" />
         </Switch>
       </BrowserRouter>
       </AuthContext.Provider>
